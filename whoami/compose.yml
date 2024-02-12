@@ -1,0 +1,14 @@
+services:
+  whoami:
+    image: traefik/whoami
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.whoami.rule=Host(`whoami3.carrasco.dev`)
+      - traefik.http.routers.whoami.entrypoints=websecure
+      - traefik.http.routers.whoami.tls.certresolver=le
+    networks:
+      - proxy_default
+      - default
+networks:
+  proxy_default:
+    external: true
