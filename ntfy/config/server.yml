@@ -1,0 +1,2 @@
+base-url: "https://ntfy.carrasco.dev"
+attachment-cache-dir: "/var/cache/ntfy/attachments"

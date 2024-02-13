@@ -1,0 +1,22 @@
+services:
+  ntfy:
+    image: binwiederhier/ntfy
+    command:
+      - serve
+    volumes:
+      - /var/cache/ntfy:/var/cache/ntfy
+      - ${PWD}/config:/etc/ntfy
+    restart: unless-stopped
+    expose:
+      - 80
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.ntfy.rule=Host(`ntfy.carrasco.dev`)
+      - traefik.http.routers.ntfy.entrypoints=websecure
+      - traefik.http.routers.ntfy.tls.certresolver=le
+    networks:
+      - proxy_default
+      - default
+networks:
+  proxy_default:
+    external: true
